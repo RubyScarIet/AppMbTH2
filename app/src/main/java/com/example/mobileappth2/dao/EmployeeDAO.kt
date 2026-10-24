@@ -181,7 +181,7 @@ class EmployeeDAO(private val dbHelper: DBHelper) {
         val emp = getEmployeeById(employeeId) ?: return false
         val db = dbHelper.writableDatabase
         val deletedRows = db.delete(DBHelper.TABLE_EMPLOYEE, "${DBHelper.COL_EMP_ID}=?", arrayOf(employeeId.toString()))
-        // Gọi AccountDAO để xoá account liên kết
+        // Xoá account liên kết
         dbHelper.accountDAO.deleteAccount(emp.accountId)
         return deletedRows > 0
     }
